@@ -120,22 +120,22 @@ function updateGrid() {
       }
       
       if (state > 0 && state < 11) {
-        // if (alarm) {
-        //   if (state < 5) {
-        //     // Distrustful cells die in a real alarm
-        //     if(random(0,1) < deathRate) {
-        //       grid[i][j] = -1;
-        //     }
-        //   } else {
-        //     // Trustful cells become more trusting in a real alarm
-        //     if(state < 10) grid[i][j]++;
-        //   }
-        // } else {
-        //   // Trustful cells become less trusting in a false alarm
-        //   if (state >= 5) {
-        //     grid[i][j]--;
-        //   }
-        // }
+        if (alarm) {
+          if (state < 5) {
+            // Distrustful cells die in a real alarm
+            if(random(0,1) < deathRate) {
+              grid[i][j] = -1;
+            }
+          } else {
+            // Trustful cells become more trusting in a real alarm
+            if(state < 10) grid[i][j]++;
+          }
+        } else {
+          // Trustful cells become less trusting in a false alarm
+          if (state >= 5) {
+            grid[i][j]--;
+          }
+        }
 
         // Spread distrust - acutally this is spreading death
         if(countDistrustfulNeighbors(i, j) > 7) { constrain(grid[i][j]--, 0, 10)}
